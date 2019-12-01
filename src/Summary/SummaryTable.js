@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table'
 
 const SUBTITLE = {
-	goal: 'Daily advise(edit)',
+	goal: 'Daily advise',
 	exercise: 'Burned exta with exercise',
 	eaten: 'Eaten today'
 };
