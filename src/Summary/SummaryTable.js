@@ -5,16 +5,16 @@ const SUBTITLE = {
 	goal: 'Daily advise(edit)',
 	exercise: 'Burned exta with exercise',
 	eaten: 'Eaten today'
-}
+};
 
 class SummaryTable extends Component {
 
 	render(){
-		const tablebody = Object.keys(SUBTITLE).map((type, idx) => {
+		const tablBody = Object.keys(SUBTITLE).map((type, idx) => {
 			return(
 				<tr key={`summaryTable-${idx}`}>
 					<td colSpan="8">{SUBTITLE[type]}</td>
-					<td>{this.props[type]}</td>
+					<td>{`${this.props[type]} kcal`}</td>
 				</tr>
 			)
 		});
@@ -27,7 +27,7 @@ class SummaryTable extends Component {
 						<th>Calender</th>
 					</tr>
 					</thead>
-					<tbody>{tablebody}</tbody>
+					<tbody>{tablBody}</tbody>
 				</Table>
 		)
 

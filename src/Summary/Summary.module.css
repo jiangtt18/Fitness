@@ -2,5 +2,14 @@
     width: 35%;
     height: 20%;
     border: black solid;
+}
 
+.progress{
+    display:flex;
+    flex-direction: column;
+}
+
+.label{
+    display:flex;
+    justify-content: space-between;
 }
