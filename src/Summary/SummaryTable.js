@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table'
 
+const SUBTITLE = {
+	goal: 'Daily advise(edit)',
+	exercise: 'Burned exta with exercise',
+	eaten: 'Eaten today'
+}
+
 class SummaryTable extends Component {
+
 	render(){
+		const tablebody = Object.keys(SUBTITLE).map((type, idx) => {
+			return(
+				<tr key={`summaryTable-${idx}`}>
+					<td colSpan="8">{SUBTITLE[type]}</td>
+					<td>{this.props[type]}</td>
+				</tr>
+			)
+		});
+
 		return(
 				<Table hover borderless responsive>
 					<thead>
@@ -11,20 +27,7 @@ class SummaryTable extends Component {
 						<th>Calender</th>
 					</tr>
 					</thead>
-					<tbody>
-					<tr>
-						<td colSpan="8">Daily advise(edit)</td>
-						<td>{this.props.goal}</td>
-					</tr>
-					<tr>
-						<td colSpan="8">Burned extra with exercise</td>
-						<td>{this.props.exercise}</td>
-					</tr>
-					<tr>
-						<td colSpan="8">Eaten today</td>
-						<td>{this.props.eaten}</td>
-					</tr>
-					</tbody>
+					<tbody>{tablebody}</tbody>
 				</Table>
 		)
 
