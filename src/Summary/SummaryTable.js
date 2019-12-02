@@ -10,7 +10,7 @@ const SUBTITLE = {
 class SummaryTable extends Component {
 
 	render(){
-		const tablBody = Object.keys(SUBTITLE).map((type, idx) => {
+		const tabelBody = Object.keys(SUBTITLE).map((type, idx) => {
 			return(
 				<tr key={`summaryTable-${idx}`}>
 					<td colSpan="8">{SUBTITLE[type]}</td>
@@ -27,7 +27,7 @@ class SummaryTable extends Component {
 						<th>Calender</th>
 					</tr>
 					</thead>
-					<tbody>{tablBody}</tbody>
+					<tbody>{tabelBody}</tbody>
 				</Table>
 		)
 
