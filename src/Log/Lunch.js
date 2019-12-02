@@ -1,8 +1,9 @@
 import React from 'react';
+import LogTable from "./LogTable";
 
-const Lunch = () =>{
+const Lunch = (props) =>{
 	return(
-		<div></div>
+		<div><LogTable {...props} /></div>
 	)
 };
 

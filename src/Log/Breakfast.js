@@ -1,8 +1,11 @@
 import React from 'react';
+import LogTable from "./LogTable";
 
-const Breakfast = () =>{
+const Breakfast = (props) =>{
 	return(
-		<div></div>
+		<div>
+			<LogTable {...props} />
+		</div>
 	)
 };
 
