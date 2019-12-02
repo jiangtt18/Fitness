@@ -7,16 +7,10 @@ import Snack from './Snack'
 class Log extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      breakfast: [],
-      lunch: [],
-      dinner: [],
-      snack: []
-    }
   }
 
   render(){
-    const {breakfast, lunch, dinner, snack} = this.state;
+    const {breakfast, lunch, dinner, snack} = this.props;
     return(
       <div>
           <Breakfast breakfast={breakfast}/>
@@ -25,7 +19,22 @@ class Log extends Component {
           <Snack snack={snack} />
       </div>
     )
-
   }
 }
+
+Log.defaultProps={
+  breakfast:
+    {name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
+    },
+  lunch:
+    {name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
+    },
+  dinner:
+    {name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
+    },
+  snack:
+    {name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
+    }
+};
+
 export default Log;
