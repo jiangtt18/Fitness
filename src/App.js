@@ -14,8 +14,9 @@ class Fitness extends Component {
    this.state={
      showDeletionModal:false,
      showAddItemModal:false,
-     removingItem: '',
+     removingItemId: '',
      removingType: '',
+     removingItemName:'',
       breakfast:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
         }},
       lunch:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
@@ -38,8 +39,8 @@ class Fitness extends Component {
   };
 
   openDeleteConfirmation=(type,itemId) =>{
-    console.log(type,itemId);
-    this.setState({showDeletionModal: true, type, itemId})
+    let removingItemName = this.state[type.toLowerCase()][itemId]['name'] || '';
+    this.setState({showDeletionModal: true, removingType:type, removingItemId: itemId, removingItemName:removingItemName})
   };
 
   onDeletionConfirmation=() =>{
@@ -50,8 +51,9 @@ class Fitness extends Component {
     this.setState({showDeletionModal: false, removingItem:'', removingType:''})
   };
 
+
   render(){
-   const {breakfast, lunch, dinner, snack, removingItem, removingType, showAddItemModal, showDeletionModal} = this.state;
+   const {breakfast, lunch, dinner, snack, removingType, removingItemName, showAddItemModal, showDeletionModal} = this.state;
     return(
       <Jumbotron fluid>
         <Card>
@@ -63,8 +65,8 @@ class Fitness extends Component {
         </Card>
         <ModalTemplate show={showDeletionModal} onConfirm={this.onDeletionConfirmation} confirmText={'Delete'} onHide={this.onHide}>
           {'Are you sure you want to delete '}
-          <strong>{removingItem}</strong>
-          {`from ${removingType} ? `}
+          <strong>{removingItemName}</strong>
+          {` from ${removingType} ? `}
         </ModalTemplate>
       </Jumbotron>
     )
