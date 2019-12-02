@@ -21,7 +21,7 @@ class SummaryTable extends Component {
 		});
 
 		return(
-				<Table hover borderless responsive>
+				<Table borderless responsive>
 					<thead>
 					<tr>
 						<th colSpan="8" className={styles.title}>Calories today</th>

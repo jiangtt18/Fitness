@@ -1,4 +1,18 @@
 .intake{
     width:60%;
-    border:black solid;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    background: #fff;
+    padding: 1.25rem;
+}
+
+.title{
+    font-size: 22px;
+}
+
+.type{
+    font-weight: bold;
+}
+
+.value{
+    color:rgb(143,144,144);
 }
