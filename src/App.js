@@ -5,15 +5,20 @@ import CardSection from './Card/CardSection/CardSection'
 import Summary from './Summary/Summary'
 import IntakeBreakdown from "./IntakeBreakdown/IntakeBreakdown";
 import Log from './Log/Log'
-class Fitness extends Component {
 
+class Fitness extends Component {
  constructor(props){
    super(props);
+
    this.state={
-      breakfast:[],
-      lunch:[],
-      dinner:[],
-      snack:[]
+      breakfast:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
+      }],
+      lunch:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
+      }],
+      dinner:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
+      }],
+      snack:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
+      }]
    };
 
    this.onAddItem = this.onAddItem.bind(this);
@@ -41,4 +46,6 @@ class Fitness extends Component {
     )
   }
 }
+
+
 export default Fitness;
