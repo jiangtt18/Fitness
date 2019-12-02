@@ -3,6 +3,7 @@ import Breakfast from './Breakfast'
 import Lunch from './Lunch'
 import Dinner from './Dinner'
 import Snack from './Snack'
+import styles from './Log.module.css'
 
 class Log extends Component {
   constructor(props){
@@ -12,7 +13,7 @@ class Log extends Component {
   render(){
     const {breakfast, lunch, dinner, snack} = this.props;
     return(
-      <div>
+      <div className={styles.log}>
           <Breakfast rows={breakfast} title={'Breakfast'}/>
           <Lunch rows={lunch} title={'Lunch'}/>
           <Dinner rows={dinner} title={'Dinner'} />

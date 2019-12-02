@@ -7,7 +7,27 @@ import IntakeBreakdown from "./IntakeBreakdown/IntakeBreakdown";
 import Log from './Log/Log'
 class Fitness extends Component {
 
+ constructor(props){
+   super(props);
+   this.state={
+      breakfast:[],
+      lunch:[],
+      dinner:[],
+      snack:[]
+   };
+
+   this.onAddItem = this.onAddItem.bind(this);
+   this.handlers = {
+     onAddItem: this.onAddItem
+   }
+ }
+
+  onAddItem = (type, itemInfo) => {
+    this.setState({[type]: itemInfo})
+  };
+
   render(){
+   const {breakfast, lunch, dinner, snack} = this.state;
     return(
       <Jumbotron fluid>
         <Card>
@@ -15,9 +35,7 @@ class Fitness extends Component {
             <Summary/>
             <IntakeBreakdown/>
           </CardSection>
-          <CardSection>
-            <Log/>
-          </CardSection>
+          <Log handlers={this.handlers} breakfast={breakfast} lunch={lunch} dinner={dinner} snack={snack}/>
         </Card>
       </Jumbotron>
     )
