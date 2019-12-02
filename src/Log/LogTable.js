@@ -24,16 +24,16 @@ const LogTable = ({title, rows, handlers:{openDeleteConfirmation, openAddItem}})
 					<th>Actions</th>
 				</tr>
 				</thead>
-				<tbody>{tableBody(rows,title, openDeleteConfirmation)}</tbody>
+				<tbody>{tableBody(rows,title,openDeleteConfirmation)}</tbody>
 			</Table>
 		)
 
 };
 
-const tableBody = (rows,title,openDeleteConfirmation) => {
+const tableBody = (rows,title, openDeleteConfirmation) => {
 	return(
-		rows.map((row, idx) => {
-			const { name = '', amount = 0, unit = '', calories = 0, carbs = 0, proteins = 0, fats = 0, sugar = 0, sodium = 0 } = row;
+		Object.keys(rows).map((k, idx) => {
+			const {id, name = '', amount = 0, unit = '', calories = 0, carbs = 0, proteins = 0, fats = 0, sugar = 0, sodium = 0 } = rows[k];
 			return (
 				<tr key={`LogTable-${title}-${idx}`}>
 					<td>{name}</td>
@@ -45,7 +45,7 @@ const tableBody = (rows,title,openDeleteConfirmation) => {
 					<td>{`${sodium} g`}</td>
 					<td>{`${sugar} g`}</td>
 					<td>
-						<div className={styles.actionButton} onClick={openDeleteConfirmation}>
+						<div className={styles.actionButton} onClick={() => openDeleteConfirmation(title,id)}>
 							<i className='fas fa-trash' />
 						</div>
 					</td>

@@ -5,6 +5,7 @@ import CardSection from './Card/CardSection/CardSection'
 import Summary from './Summary/Summary'
 import IntakeBreakdown from "./IntakeBreakdown/IntakeBreakdown";
 import Log from './Log/Log'
+import ModalTemplate from './Modal/Modal'
 
 class Fitness extends Component {
  constructor(props){
@@ -13,14 +14,16 @@ class Fitness extends Component {
    this.state={
      showDeletionModal:false,
      showAddItemModal:false,
-      breakfast:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
-      }],
-      lunch:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
-      }],
-      dinner:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
-      }],
-      snack:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
-      }]
+     removingItem: '',
+     removingType: '',
+      breakfast:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
+        }},
+      lunch:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
+        }},
+      dinner:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
+        }},
+      snack:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
+        }}
    };
 
    this.handlers = {
@@ -34,13 +37,21 @@ class Fitness extends Component {
     // this.setState({[type]: itemInfo})
   };
 
-  openDeleteConfirmation=(type,itemInfo) =>{
-    console.log('deleteItem');
-    this.setState({showDeletionModal: true})
+  openDeleteConfirmation=(type,itemId) =>{
+    console.log(type,itemId);
+    this.setState({showDeletionModal: true, type, itemId})
+  };
+
+  onDeletionConfirmation=() =>{
+
+  };
+
+  onHide=()=>{
+    this.setState({showDeletionModal: false, removingItem:'', removingType:''})
   };
 
   render(){
-   const {breakfast, lunch, dinner, snack} = this.state;
+   const {breakfast, lunch, dinner, snack, removingItem, removingType, showAddItemModal, showDeletionModal} = this.state;
     return(
       <Jumbotron fluid>
         <Card>
@@ -49,8 +60,12 @@ class Fitness extends Component {
             <IntakeBreakdown/>
           </CardSection>
           <Log handlers={this.handlers} breakfast={breakfast} lunch={lunch} dinner={dinner} snack={snack}/>
-
         </Card>
+        <ModalTemplate show={showDeletionModal} onConfirm={this.onDeletionConfirmation} confirmText={'Delete'} onHide={this.onHide}>
+          {'Are you sure you want to delete '}
+          <strong>{removingItem}</strong>
+          {`from ${removingType} ? `}
+        </ModalTemplate>
       </Jumbotron>
     )
   }
