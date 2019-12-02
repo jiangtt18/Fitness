@@ -11,6 +11,8 @@ class Fitness extends Component {
    super(props);
 
    this.state={
+     showDeletionModal:false,
+     showAddItemModal:false,
       breakfast:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
       }],
       lunch:[{name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0,     sugar:2, sodium:1
@@ -21,7 +23,6 @@ class Fitness extends Component {
       }]
    };
 
-   // this.openAddItem = this.openAddItem.bind(this);
    this.handlers = {
      openAddItem: this.openAddItem,
      openDeleteConfirmation: this.openDeleteConfirmation,
@@ -34,7 +35,8 @@ class Fitness extends Component {
   };
 
   openDeleteConfirmation=(type,itemInfo) =>{
-    console.log('deleteItem')
+    console.log('deleteItem');
+    this.setState({showDeletionModal: true})
   };
 
   render(){
@@ -47,6 +49,7 @@ class Fitness extends Component {
             <IntakeBreakdown/>
           </CardSection>
           <Log handlers={this.handlers} breakfast={breakfast} lunch={lunch} dinner={dinner} snack={snack}/>
+
         </Card>
       </Jumbotron>
     )

@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
+import classNames from 'classnames';
 import styles from './Log.module.css'
 
 const LogTable = ({title, rows, handlers:{openDeleteConfirmation, openAddItem}}) => {
@@ -8,8 +9,10 @@ const LogTable = ({title, rows, handlers:{openDeleteConfirmation, openAddItem}})
 				<thead>
 				<tr>
 					<th>
-						<span>{title}</span>
-						<span><i className="fas fa-plus-circle" onClick={openAddItem}></i></span>
+						<span className={styles.title}>{title}</span>
+						<span className={styles.actionButton} onClick={openDeleteConfirmation}>
+							<i className="fas fa-plus-circle" onClick={openAddItem}></i>
+						</span>
 					</th>
 					<th>Amount</th>
 					<th>Calories</th>
