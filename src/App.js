@@ -21,14 +21,20 @@ class Fitness extends Component {
       }]
    };
 
-   this.onAddItem = this.onAddItem.bind(this);
+   // this.openAddItem = this.openAddItem.bind(this);
    this.handlers = {
-     onAddItem: this.onAddItem
+     openAddItem: this.openAddItem,
+     openDeleteConfirmation: this.openDeleteConfirmation,
    }
  }
 
-  onAddItem = (type, itemInfo) => {
-    this.setState({[type]: itemInfo})
+  openAddItem = (type, itemInfo) => {
+    console.log('openItem')
+    // this.setState({[type]: itemInfo})
+  };
+
+  openDeleteConfirmation=(type,itemInfo) =>{
+    console.log('deleteItem')
   };
 
   render(){

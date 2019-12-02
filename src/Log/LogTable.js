@@ -9,7 +9,7 @@ const LogTable = ({title, rows, handlers:{openDeleteConfirmation, openAddItem}})
 				<tr>
 					<th>
 						<span>{title}</span>
-						<span><i className="fas fa-plus-circle"></i></span>
+						<span><i className="fas fa-plus-circle" onClick={openAddItem}></i></span>
 					</th>
 					<th>Amount</th>
 					<th>Calories</th>
