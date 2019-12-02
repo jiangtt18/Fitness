@@ -4,7 +4,7 @@ import Card from './Card/Card'
 import CardSection from './Card/CardSection/CardSection'
 import Summary from './Summary/Summary'
 import IntakeBreakdown from "./IntakeBreakdown/IntakeBreakdown";
-
+import Log from './Log/Log'
 class Fitness extends Component {
 
   render(){
@@ -14,6 +14,9 @@ class Fitness extends Component {
           <CardSection>
             <Summary/>
             <IntakeBreakdown/>
+          </CardSection>
+          <CardSection>
+            <Log/>
           </CardSection>
         </Card>
       </Jumbotron>
