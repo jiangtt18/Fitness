@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import IntakeTable from './IntakeTable'
+import IntakeTable from './IntakeTable';
+import styles from './IntakeBreakdown.module.css';
+
 class IntakeBreakdown extends Component {
   render(){
     return(
-      <div>
+      <div className={styles.intake}>
         <IntakeTable {...this.props} />
       </div>
     )

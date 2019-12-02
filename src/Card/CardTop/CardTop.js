@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
-import Summary from '../../Summary/Summary'
-import IntakeBreakdown from '../../IntakeBreakdown/IntakeBreakdown'
+import React from 'react';
+import classNames from 'classnames';
+import styles from './CardTop.module.css'
 
-
-class CardTop extends Component {
-    render(){
-        return(
-            <div>
-                <Summary />
-                <IntakeBreakdown />
-            </div>
-        )
-    }
+const CardTop = ({ children, className, ...rest }) => {
+  return(
+    <div className={classNames(styles.cardTop, className,)} {...rest}>
+      {children}
+    </div>
+  )
 }
-
 export default CardTop
