@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Table from 'react-bootstrap/Table'
+import styles from './Summary.module.css'
 
 const SUBTITLE = {
 	goal: 'Daily advise',
@@ -10,11 +11,11 @@ const SUBTITLE = {
 class SummaryTable extends Component {
 
 	render(){
-		const tabelBody = Object.keys(SUBTITLE).map((type, idx) => {
+		const tableBody = Object.keys(SUBTITLE).map((type, idx) => {
 			return(
 				<tr key={`summaryTable-${idx}`}>
-					<td colSpan="8">{SUBTITLE[type]}</td>
-					<td>{`${this.props[type]} kcal`}</td>
+					<td className={styles.type} colSpan="8">{SUBTITLE[type]}</td>
+					<td className={styles.value}>{`${this.props[type]} kcal`}</td>
 				</tr>
 			)
 		});
@@ -23,11 +24,11 @@ class SummaryTable extends Component {
 				<Table hover borderless responsive>
 					<thead>
 					<tr>
-						<th colSpan="8">Calories today</th>
+						<th colSpan="8" className={styles.title}>Calories today</th>
 						<th>Calender</th>
 					</tr>
 					</thead>
-					<tbody>{tabelBody}</tbody>
+					<tbody>{tableBody}</tbody>
 				</Table>
 		)
 

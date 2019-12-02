@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
-import styles from './CardTop.module.css'
+import styles from './CardSection.module.css'
 
-const CardTop = ({ children, className, ...rest }) => {
+const CardSection = ({ children, className, ...rest }) => {
   return(
     <div className={classNames(styles.cardTop, className,)} {...rest}>
       {children}
     </div>
   )
 }
-export default CardTop
+export default CardSection
