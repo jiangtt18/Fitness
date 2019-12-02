@@ -13,12 +13,16 @@ const SUBTITLE = [
 
 
 class IntakeTable extends Component {
+
 	render(){
 		const tableBody = SUBTITLE.map((type, idx) => {
 			return(
 				<tr key={`intakeTable-${idx}`}>
-					<td colSpan="8">{capitalize(type)}</td>
-					<td colSpan="8">{`${this.props[type]} g`}</td>
+					<td>
+						<div>{capitalize(type)}</div>
+						<div>{`Goal: ${this.props.goals[type]}`}</div>
+					</td>
+					<td>{`${this.props[type]} g`}</td>
 					<td></td>
 				</tr>
 			)
