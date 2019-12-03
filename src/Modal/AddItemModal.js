@@ -32,31 +32,31 @@ const renderForm = (onChange, validated) => {
 			<Form.Control required type="text" name='addItemName' onChange = {(e) => {onChange(e)}} placeholder="Enter food"/>
 
 			<Form.Label>Calories(kcal)</Form.Label>
-			<Form.Control required type="number" name='AddCalorie' onChange = {(e) => {onChange(e)}} placeholder="Enter calorie "/>
+			<Form.Control required type="number" min="0" name='AddCalorie' onChange = {(e) => {onChange(e)}} placeholder="Enter calorie "/>
 
 			<Row>
 				<Col>
 					<Form.Label>Carbohydrates(g)</Form.Label>
-					<Form.Control type="number" name='AddCarb' onChange = {(e) => {onChange(e)}} placeholder="Enter carbs "/>
+					<Form.Control type="number" min="0" name='AddCarb' onChange = {(e) => {onChange(e)}} placeholder="Enter carbs "/>
 				</Col>
 				<Col>
 					<Form.Label>Proteins(g)</Form.Label>
-					<Form.Control type="number" name='AddProtein' onChange = {(e) => {onChange(e)}} placeholder="Enter protein "/>
+					<Form.Control type="number" min="0" name='AddProtein' onChange = {(e) => {onChange(e)}} placeholder="Enter protein "/>
 				</Col>
 				<Col>
 					<Form.Label>Fats(g)</Form.Label>
-					<Form.Control type="number" name='AddFat' onChange = {(e) => {onChange(e)}} placeholder="Enter fat "/>
+					<Form.Control type="number" min="0" name='AddFat' onChange = {(e) => {onChange(e)}} placeholder="Enter fat "/>
 				</Col>
 			</Row>
 
 			<Row>
 				<Col>
 					<Form.Label>Sodium(g)</Form.Label>
-					<Form.Control type="number" name='AddSodium' onChange = {(e) => {onChange(e)}} placeholder="Enter sodium amount"/>
+					<Form.Control type="number" min="0" name='AddSodium' onChange = {(e) => {onChange(e)}} placeholder="Enter sodium amount"/>
 				</Col>
 				<Col>
 					<Form.Label>Sugar(g)</Form.Label>
-					<Form.Control type="number" name='AddSugar' onChange = {(e) => {onChange(e)}} placeholder="Enter sugar amount"/>
+					<Form.Control type="number" min="0" name='AddSugar' onChange = {(e) => {onChange(e)}} placeholder="Enter sugar amount"/>
 				</Col>
 			</Row>
 		</Form>
