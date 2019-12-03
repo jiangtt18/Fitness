@@ -8,5 +8,5 @@ const CardSection = ({ children, className, ...rest }) => {
       {children}
     </div>
   )
-}
+};
 export default CardSection

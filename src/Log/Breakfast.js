@@ -1,12 +1,6 @@
 import React from 'react';
 import LogTable from "./LogTable";
 
-const Breakfast = (props) =>{
-	return(
-		<div>
-			<LogTable {...props} />
-		</div>
-	)
-};
+const Breakfast = (props) =>(<div><LogTable {...props} /></div>);
 
 export default Breakfast;

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import Jumbotron from 'react-bootstrap/Jumbotron'
-import filter from 'lodash/filter'
-import Card from './Card/Card'
-import CardSection from './Card/CardSection/CardSection'
-import Summary from './Summary/Summary'
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import filter from 'lodash/filter';
+import Card from './Card/Card';
+import CardSection from './Card/CardSection/CardSection';
+import Summary from './Summary/Summary';
 import IntakeBreakdown from "./IntakeBreakdown/IntakeBreakdown";
-import Log from './Log/Log'
-import DeletionConfirmationModal from './Modal/DeletionConfirmationModal'
-import AddItemModal from './Modal/AddItemModal'
+import Log from './Log/Log';
+import DeletionConfirmationModal from './Modal/DeletionConfirmationModal';
+import AddItemModal from './Modal/AddItemModal';
 
 class Fitness extends Component {
  constructor(props){

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SummaryTable from './SummaryTable';
-import SummaryProgress from './SummaryProgress'
+import SummaryProgress from './SummaryProgress';
 import styles from './Summary.module.css';
 
 class Summary extends Component {
@@ -14,15 +14,8 @@ class Summary extends Component {
         <SummaryProgress remaining={remaining} goal={goal} eaten={eaten}/>
       </div>
     )
-
   }
 }
-
-Summary.defaultProps = {
-  exercise:31,
-  eaten: 350,
-  goal: 1758,
-};
 
 Summary.propTypes = {
   exercise:PropTypes.number,
