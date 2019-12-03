@@ -29,7 +29,7 @@ class IntakeTable extends Component {
 		const tableBody = SUBTITLE.map((type, idx) => {
 			const cur = this.props[type];
 			const target = this.props.goals[type];
-			const label = cur/target*100;
+			const label = (cur/target).toFixed(2)*100;
 			return(
 				<tr key={`intakeTable-${idx}`}>
 					<td className='w-27'>

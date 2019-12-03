@@ -11,7 +11,7 @@ class Summary extends Component {
     return(
       <div className={styles.summary}>
         <SummaryTable {...this.props}/>
-        <SummaryProgress remaining={remaining} goal={goal}/>
+        <SummaryProgress remaining={remaining} goal={goal} eaten={eaten}/>
       </div>
     )
 

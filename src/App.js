@@ -27,14 +27,18 @@ class Fitness extends Component {
      AddFat:0,
      AddSodium:0,
      AddSugar:0,
-      breakfast:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
-        }},
-      lunch:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
-        }},
-      dinner:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
-        }},
-      snack:{1:{id:1,name:'pancake', amount: 1, unit: 'slice', calories: 60, carbs: 18, proteins: 3, fats: 0, sugar:2, sodium:1
-        }}
+     exercise:0,
+     eaten: 0,
+     goal: 1758,
+     carbohydrates:0,
+     proteins: 0,
+     fats:0,
+     sodium:0,
+     sugar:0,
+      breakfast:{},
+      lunch:{},
+      dinner:{},
+      snack:{},
    };
 
    this.handlers = {
@@ -42,6 +46,7 @@ class Fitness extends Component {
      openDeleteConfirmation: this.openDeleteConfirmation,
    }
  }
+
 
   openAddItem = (e,type) => {
     e.preventDefault();
@@ -58,10 +63,34 @@ class Fitness extends Component {
 
   onDeletionConfirmation = () => {
       const {removingType, removingItemId} = this.state;
-      let data = this.state[removingType]
-      let updated = filter(data, (o) => o.id !== removingItemId )
-      this.setState({[removingType]: updated})
-      this.onClose();
+      let data = this.state[removingType];
+      let updated = filter(data, (o) => o.id !== removingItemId );
+      let curTotal = this.handleNutritionRemove().calories;
+      this.setState({[removingType]: updated, eaten: curTotal})
+      this.onDeletionModalClose();
+  };
+
+  handleNutritionRemove = () => {
+    const {removingType, removingItemId} = this.state;
+    let removedData = this.state[removingType][removingItemId];
+    const formattedData = Object.keys(removedData).reduce((accu, k) => {
+      accu[k] = -removedData[k];
+      return accu
+    },{});
+    return this.calcCurrentTotal(formattedData);
+  };
+
+  calcCurrentTotal = (data) => {
+    const {breakfast, lunch, dinner, snack} = this.state;
+    const total = Object.values(breakfast).concat(Object.values(lunch), Object.values(dinner),Object.values(snack), [data]);
+     return total.reduce((accu,cur) => {
+        Object.keys(cur).forEach((k) => {
+          if (!accu[k]){accu[k] = 0}
+          accu[k]+= parseInt(cur[k])
+        });
+       return accu
+     }, {})
+
   };
 
   onDeletionModalClose = () => {
@@ -96,9 +125,21 @@ class Fitness extends Component {
      let data = this.state[AddingType];
      let ids =  Object.keys(data).map((s) =>(parseInt(s)));
      let tempId = Math.max(...ids) + 1;
-     let updated = Object.assign( data,{[tempId]:{id: tempId, name:addItemName, calories:AddCalorie, carbs:AddCarb, proteins:AddProtein, fats:AddFat,
-       sodium:AddSodium, sugar:AddSugar}});
-    this.setState({[AddingType] : updated})
+     let added = {id: tempId, name:addItemName, calories:AddCalorie, carbs:AddCarb, proteins:AddProtein, fats:AddFat,
+         sodium:AddSodium, sugar:AddSugar};
+    let updated = Object.assign({}, data, {[tempId]:added});
+    let {calories,carbs, proteins, fats, sodium, sugar} = this.calcCurrentTotal(added);
+    this.setState(
+      {
+              [AddingType] : updated,
+               eaten: calories,
+               carbohydrates:carbs,
+               proteins,
+               fats,
+               sodium,
+               sugar,
+      });
+    this.onAddItemModalClose();
   };
 
   onChange = (e) => {
@@ -108,13 +149,32 @@ class Fitness extends Component {
   };
 
   render(){
-   const {breakfast, lunch, dinner, snack, removingType, removingItemName, showAddItemModal, showDeletionModal} = this.state;
+   const {
+     breakfast,
+     lunch,
+     dinner,
+     snack,
+     removingType,
+     removingItemName,
+     showAddItemModal,
+     showDeletionModal,
+     exercise,
+     eaten,
+     goal,
+     carbohydrates,
+     proteins,
+     fats,
+     sodium,
+     sugar,
+   } = this.state;
+
     return(
       <Jumbotron fluid>
         <Card>
           <CardSection>
-            <Summary/>
-            <IntakeBreakdown/>
+            <Summary exercise={exercise} eaten={eaten} goal={goal}/>
+            <IntakeBreakdown carbohydrates={carbohydrates} proteins={proteins} fats={fats}
+                             sodium={sodium} sugar={sugar}/>
           </CardSection>
           <Log handlers={this.handlers} breakfast={breakfast} lunch={lunch} dinner={dinner} snack={snack}/>
         </Card>

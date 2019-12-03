@@ -20,7 +20,7 @@ IntakeBreakdown.defaultProps = {
   fats:21,
   sodium:20,
   sugar:30,
-  goals:{carbohydrates: 20,proteins: 56, fats: 50, sodium: 20, sugar: 40 }
+  goals:{carbohydrates: 300,proteins: 56, fats: 50, sodium: 2.3, sugar: 40 }
 };
 
 IntakeBreakdown.propTypes = {
