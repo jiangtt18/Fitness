@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
-import styles from './Modal.module.css'
 
 class ModalTemplate extends Component {
 

@@ -32,9 +32,9 @@ const LogTable = ({title, rows, handlers:{openDeleteConfirmation, openAddItem}})
 const emptyState = (title) => {
 	return(
 		<tbody>
-			<th colSpan='8' className={styles.empty}>
-				{`No ${title.toLowerCase()} has been logged yet. Click add icon to add your item!`}
-			</th>
+			<tr >
+				<td colSpan='8' className={styles.empty}>{`No ${title.toLowerCase()} has been logged yet. Click add icon to add your item!`}</td>
+			</tr>
 		</tbody>
 	)
 };
