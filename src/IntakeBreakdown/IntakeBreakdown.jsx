@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import IntakeTable from './IntakeTable';
 import styles from './IntakeBreakdown.module.css';

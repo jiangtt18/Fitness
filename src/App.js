@@ -39,6 +39,7 @@ class Fitness extends Component {
      lunch: {},
      dinner: {},
      snack: {},
+     errorMessage: ''
    };
 
    this.handlers = {
@@ -101,6 +102,11 @@ class Fitness extends Component {
       AddSodium,
       AddSugar
     } = this.state;
+    if (this.hasError()){
+      this.setState({errorMessage: 'Name and Calories fields are required'});
+      return;
+    }
+
     let data = this.state[AddingType];
     let ids =  Object.keys(data).map((s) =>(parseInt(s)));
     let tempId = Math.max(...ids) + 1;
@@ -122,6 +128,11 @@ class Fitness extends Component {
     this.onAddItemModalClose();
   };
 
+  hasError = () => {
+    const {addItemName, AddCalorie} = this.state;
+    return addItemName.trim() === '' || AddCalorie === 0;
+  };
+
   onAddItemModalClose = () => {
     this.setState(
       {
@@ -134,6 +145,7 @@ class Fitness extends Component {
         AddFat: 0,
         AddSodium: 0,
         AddSugar: 0,
+        errorMessage:''
       }
     )
   };
@@ -184,6 +196,7 @@ class Fitness extends Component {
      fats,
      sodium,
      sugar,
+     errorMessage,
    } = this.state;
 
     return(
@@ -213,6 +226,7 @@ class Fitness extends Component {
           onConfirm={this.onAddItem}
           onHide={this.onAddItemModalClose}
           onChange={this.onChange}
+          errorMessage={errorMessage}
         />
       </Jumbotron>
     )

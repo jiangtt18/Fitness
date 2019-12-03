@@ -1,6 +1,5 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-import classNames from 'classnames';
 import styles from './Log.module.css'
 
 const LogTable = ({title, rows, handlers:{openDeleteConfirmation, openAddItem}}) => {

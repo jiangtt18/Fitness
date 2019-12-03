@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import capitalize from 'lodash/capitalize';
 import classNames from 'classnames';
 import Table from 'react-bootstrap/Table';
@@ -22,16 +22,21 @@ const COLOR = {
 	'sodium':'warning',
 };
 
+const micro = ['sugar', "sodium"];
+
 const tableBody = (props) => {
 	return SUBTITLE.map((type, idx) => {
 		const cur = props[type];
 		const target = props.goals[type];
-		const label = (cur/target).toFixed(2)*100;
+		const label = (cur/target*100).toFixed(0);
+		const targetLabel = micro.includes(type) ? 'Max' : 'Goal';
 		return(
 			<tr key={`intakeTable-${idx}`}>
 				<td className='w-27'>
 					<div className={styles.type}>{capitalize(type)}</div>
-					<div className={styles.value}>{`Goal: ${target}`}</div>
+					<div className={styles.value}>
+						{`${targetLabel}: ${target}`}
+					</div>
 				</td>
 				<td className={classNames(styles.type,'w-23')}>{`${cur} g`}</td>
 				<td className='w-50'>
