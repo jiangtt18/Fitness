@@ -13,32 +13,32 @@ class Fitness extends Component {
  constructor(props){
    super(props);
 
-   this.state={
-     showDeletionModal:false,
-     showAddItemModal:false,
+   this.state = {
+     showDeletionModal: false,
+     showAddItemModal: false,
      removingItemId: '',
      removingType: '',
-     removingItemName:'',
-     addItemName:'',
-     AddingType:'',
-     AddCalorie:0,
-     AddCarb:0,
-     AddProtein:0,
-     AddFat:0,
-     AddSodium:0,
-     AddSugar:0,
-     exercise:0,
+     removingItemName:' ',
+     addItemName: '',
+     AddingType: '',
+     AddCalorie: 0,
+     AddCarb: 0,
+     AddProtein: 0,
+     AddFat: 0,
+     AddSodium: 0,
+     AddSugar: 0,
+     exercise: 0,
      eaten: 0,
      goal: 1758,
-     carbohydrates:0,
+     carbohydrates: 0,
      proteins: 0,
-     fats:0,
-     sodium:0,
+     fats: 0,
+     sodium: 0,
      sugar:0,
-     breakfast:{},
-     lunch:{},
-     dinner:{},
-     snack:{},
+     breakfast: {},
+     lunch: {},
+     dinner: {},
+     snack: {},
    };
 
    this.handlers = {
@@ -47,37 +47,101 @@ class Fitness extends Component {
    }
  }
 
-
-  openAddItem = (e,type) => {
+  openAddItem = (e, type) => {
     e.preventDefault();
     e.stopPropagation();
-    this.setState({showAddItemModal:true, AddingType:type.toLowerCase()})
+    this.setState({showAddItemModal: true, AddingType: type.toLowerCase()})
   };
 
   openDeleteConfirmation = (e,type,itemId) => {
     e.preventDefault();
     e.stopPropagation();
     let removingItemName = this.state[type.toLowerCase()][itemId]['name'] || '';
-    this.setState({showDeletionModal: true, removingType:type.toLowerCase(), removingItemId: itemId, removingItemName:removingItemName})
+    this.setState(
+  {
+          showDeletionModal: true,
+          removingType:type.toLowerCase(),
+          removingItemId: itemId,
+          removingItemName:removingItemName
+        }
+      )
   };
 
   onDeletionConfirmation = () => {
-      const {removingType, removingItemId} = this.state;
-      let data = this.state[removingType];
-      let updated = filter(data, (o) => o.id !== removingItemId );
-      let {calories, carbs, proteins, fats, sodium, sugar} = this.handleNutritionRemove();
-      this.setState(
-        {
-                [removingType]: updated,
-                eaten: calories,
-                carbohydrates:carbs,
-                proteins,
-                fats,
-                sodium,
-                sugar,
-                }
-      )
-      this.onDeletionModalClose();
+    const {removingType, removingItemId} = this.state;
+    let data = this.state[removingType];
+    let updated = filter(data, (o) => o.id !== removingItemId );
+    let {calories, carbs, proteins, fats, sodium, sugar} = this.handleNutritionRemove();
+    this.setState(
+{
+        [removingType]: updated,
+        eaten: calories,
+        carbohydrates:carbs,
+        proteins,
+        fats,
+        sodium,
+        sugar,
+      }
+    );
+    this.onDeletionModalClose();
+  };
+
+  onDeletionModalClose = () => {
+    this.setState({showDeletionModal: false, removingItemId:'', removingType:'', removingItemName:''})
+  };
+
+  onAddItem = () => {
+    const {
+      addItemName,
+      AddingType,
+      AddCalorie,
+      AddCarb,
+      AddProtein,
+      AddFat,
+      AddSodium,
+      AddSugar
+    } = this.state;
+    let data = this.state[AddingType];
+    let ids =  Object.keys(data).map((s) =>(parseInt(s)));
+    let tempId = Math.max(...ids) + 1;
+    let added = {id: tempId, name:addItemName, calories:AddCalorie, carbs:AddCarb, proteins:AddProtein, fats:AddFat,
+       sodium:AddSodium, sugar:AddSugar};
+    let updated = Object.assign({}, data, {[tempId]:added});
+    let {calories, carbs, proteins, fats, sodium, sugar} = this.calcCurrentTotal(added);
+    this.setState(
+    {
+        [AddingType]: updated,
+         eaten: calories,
+         carbohydrates: carbs,
+         proteins,
+         fats,
+         sodium,
+         sugar,
+      }
+    );
+    this.onAddItemModalClose();
+  };
+
+  onAddItemModalClose = () => {
+    this.setState(
+      {
+        showAddItemModal:false,
+        addItemName: '',
+        AddingType: '',
+        AddCalorie: 0,
+        AddCarb: 0,
+        AddProtein: 0,
+        AddFat: 0,
+        AddSodium: 0,
+        AddSugar: 0,
+      }
+    )
+  };
+
+  onChange = (e) => {
+    let name = e.target.name ;
+    let value = e.target.value;
+    this.setState({[name]: value})
   };
 
   handleNutritionRemove = () => {
@@ -92,70 +156,14 @@ class Fitness extends Component {
 
   calcCurrentTotal = (data) => {
     const {breakfast, lunch, dinner, snack} = this.state;
-    const total = Object.values(breakfast).concat(Object.values(lunch), Object.values(dinner),Object.values(snack), [data]);
-     return total.reduce((accu,cur) => {
-        Object.keys(cur).forEach((k) => {
-          if (!accu[k]){accu[k] = 0}
-          accu[k]+= parseInt(cur[k])
-        });
-       return accu
-     }, {})
-
-  };
-
-  onDeletionModalClose = () => {
-    this.setState({showDeletionModal: false, removingItemId:'', removingType:'', removingItemName:''})
-  };
-
-  onAddItemModalClose = () => {
-     this.setState({
-       showAddItemModal:false,
-       addItemName: '',
-       AddingType: '',
-       AddCalorie: 0,
-       AddCarb: 0,
-       AddProtein: 0,
-       AddFat: 0,
-       AddSodium: 0,
-       AddSugar: 0,
-     })
-  };
-
-  onnAddItem = () => {
-      const {
-        addItemName,
-        AddingType,
-        AddCalorie,
-        AddCarb,
-        AddProtein,
-        AddFat,
-        AddSodium,
-        AddSugar
-      } = this.state;
-     let data = this.state[AddingType];
-     let ids =  Object.keys(data).map((s) =>(parseInt(s)));
-     let tempId = Math.max(...ids) + 1;
-     let added = {id: tempId, name:addItemName, calories:AddCalorie, carbs:AddCarb, proteins:AddProtein, fats:AddFat,
-         sodium:AddSodium, sugar:AddSugar};
-    let updated = Object.assign({}, data, {[tempId]:added});
-    let {calories,carbs, proteins, fats, sodium, sugar} = this.calcCurrentTotal(added);
-    this.setState(
-      {
-              [AddingType] : updated,
-               eaten: calories,
-               carbohydrates:carbs,
-               proteins,
-               fats,
-               sodium,
-               sugar,
+    const total = Object.values(breakfast).concat(Object.values(lunch), Object.values(dinner), Object.values(snack), [data]);
+    return total.reduce((accu, cur) => {
+      Object.keys(cur).forEach((k) => {
+        if (!accu[k]){accu[k] = 0}
+        accu[k] += parseInt(cur[k])
       });
-    this.onAddItemModalClose();
-  };
-
-  onChange = (e) => {
-    let name = e.target.name ;
-    let value= e.target.value;
-    this.setState({[name]:value})
+      return accu
+    }, {})
   };
 
   render(){
@@ -183,8 +191,13 @@ class Fitness extends Component {
         <Card>
           <CardSection>
             <Summary exercise={exercise} eaten={eaten} goal={goal}/>
-            <IntakeBreakdown carbohydrates={carbohydrates} proteins={proteins} fats={fats}
-                             sodium={sodium} sugar={sugar}/>
+            <IntakeBreakdown
+              carbohydrates={carbohydrates}
+              proteins={proteins}
+              fats={fats}
+              sodium={sodium}
+              sugar={sugar}
+            />
           </CardSection>
           <Log handlers={this.handlers} breakfast={breakfast} lunch={lunch} dinner={dinner} snack={snack}/>
         </Card>
@@ -197,7 +210,7 @@ class Fitness extends Component {
         />
         <AddItemModal
           show={showAddItemModal}
-          onConfirm={this.onnAddItem}
+          onConfirm={this.onAddItem}
           onHide={this.onAddItemModalClose}
           onChange={this.onChange}
         />
@@ -205,6 +218,5 @@ class Fitness extends Component {
     )
   }
 }
-
 
 export default Fitness;
