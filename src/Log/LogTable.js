@@ -54,7 +54,7 @@ const tableBody = (rows, title, openDeleteConfirmation) => {
 					<td>{`${sodium} g`}</td>
 					<td>{`${sugar} g`}</td>
 					<td>
-						<div className={styles.actionButton} onClick={(e) => openDeleteConfirmation(e,title,id)}>
+						<div className={styles.actionButton} onClick={(e) => openDeleteConfirmation(e, title, id)}>
 							<i className='fas fa-trash' />
 						</div>
 					</td>

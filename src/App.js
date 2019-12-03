@@ -71,7 +71,10 @@ class Fitness extends Component {
   onDeletionConfirmation = () => {
     const {removingType, removingItemId} = this.state;
     let data = this.state[removingType];
-    let updated = filter(data, (o) => o.id !== removingItemId );
+    let updated = filter(data, (o) => o.id !== removingItemId).reduce((accu, cur) => {
+      accu[cur.id] = cur;
+      return accu
+    },{});
     let {calories, carbs, proteins, fats, sodium, sugar} = this.handleNutritionRemove();
     this.setState(
 {
@@ -109,7 +112,7 @@ class Fitness extends Component {
 
     let data = this.state[AddingType];
     let ids =  Object.keys(data).map((s) =>(parseInt(s)));
-    let tempId = Math.max(...ids) + 1;
+    let tempId = ids.length === 0 ? 0 : Math.max(...ids) + 1;
     let added = {id: tempId, name:addItemName, calories:AddCalorie, carbs:AddCarb, proteins:AddProtein, fats:AddFat,
        sodium:AddSodium, sugar:AddSugar};
     let updated = Object.assign({}, data, {[tempId]:added});
