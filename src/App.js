@@ -54,10 +54,10 @@ class Fitness extends Component {
     this.setState({showAddItemModal: true, AddingType: type.toLowerCase()})
   };
 
-  openDeleteConfirmation = (e,type,itemId) => {
+  openDeleteConfirmation = (e, type, itemId) => {
     e.preventDefault();
     e.stopPropagation();
-    let removingItemName = this.state[type.toLowerCase()][itemId]['name'] || '';
+    let removingItemName = this.state[type.toLowerCase()][itemId]['name'];
     this.setState(
   {
           showDeletionModal: true,
