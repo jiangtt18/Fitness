@@ -8,7 +8,7 @@
 
 .title{
     font-size: 22px;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
 }
 
 .type{
@@ -17,6 +17,16 @@
 
 .value{
     color:rgb(143,144,144);
+}
+
+.typeWidth{
+    min-width:200px;
+}
+
+.empty {
+    text-align: center;
+    color: rgb(143,144,144);
+    font-size: 20px;
 }
 
 .actionButton {

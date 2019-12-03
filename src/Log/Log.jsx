@@ -4,6 +4,7 @@ import Lunch from './Lunch'
 import Dinner from './Dinner'
 import Snack from './Snack'
 import styles from './Log.module.css'
+import Table from 'react-bootstrap/Table';
 
 const Log = ({breakfast, lunch, dinner, snack, handlers}) => {
   return(
