@@ -1,9 +1,11 @@
 .summary{
     width: 35%;
-    height: 20%;
     border: 1px solid rgba(0, 0, 0, 0.125);
     background: #fff;
     padding: 1.25rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .title{

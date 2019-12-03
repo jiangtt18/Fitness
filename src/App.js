@@ -35,10 +35,10 @@ class Fitness extends Component {
      fats:0,
      sodium:0,
      sugar:0,
-      breakfast:{},
-      lunch:{},
-      dinner:{},
-      snack:{},
+     breakfast:{},
+     lunch:{},
+     dinner:{},
+     snack:{},
    };
 
    this.handlers = {
