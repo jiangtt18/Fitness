@@ -3,7 +3,7 @@ import ModalTemplate from "./Modal";
 
 const DeletionConfirmationModal = (
 	{
-		showDeletionModal,
+		show,
 		onConfirm,
 		onHide,
 		removingItemName,
@@ -11,7 +11,7 @@ const DeletionConfirmationModal = (
 	}) => {
 	return (
 		<ModalTemplate
-			show={showDeletionModal}
+			show={show}
 			onConfirm={onConfirm}
 			confirmText={'Delete'}
 			onHide={onHide}>

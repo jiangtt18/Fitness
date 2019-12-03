@@ -11,7 +11,7 @@ const LogTable = ({title, rows, handlers:{openDeleteConfirmation, openAddItem}})
 					<th>
 						<span className={styles.title}>{title}</span>
 						<span className={styles.actionButton} onClick={openDeleteConfirmation}>
-							<i className="fas fa-plus-circle" onClick={openAddItem}></i>
+							<i className="fas fa-plus-circle" onClick={(e)=>openAddItem(e,title)}></i>
 						</span>
 					</th>
 					<th>Amount</th>
@@ -45,7 +45,7 @@ const tableBody = (rows,title, openDeleteConfirmation) => {
 					<td>{`${sodium} g`}</td>
 					<td>{`${sugar} g`}</td>
 					<td>
-						<div className={styles.actionButton} onClick={() => openDeleteConfirmation(title,id)}>
+						<div className={styles.actionButton} onClick={(e) => openDeleteConfirmation(e,title,id)}>
 							<i className='fas fa-trash' />
 						</div>
 					</td>
