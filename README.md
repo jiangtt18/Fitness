@@ -18,13 +18,13 @@ open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
 ## Notes
-This is purely frontend project (no backend and database)
+This is a purely frontend project (no backend and database)
 
 ## Future directions
 - Reuse LogTable component to build Excise logs and dynamically update `Burned extra with exercise` in `Calorie today` section.
-- Use third party API, such as https://www.nutritionix.com/natural-demo, to support add items.
-- Replace React Bootstrap table with Ag-Grid to support more flexible table editing, such as in-cell editing and multi-select for deletions.
-- Insert a calendar in `Calorie today` section once backend and database are built. Clicking on different date can query nutrition logs per day from database.
+- Use third party API, such as https://www.nutritionix.com/natural-demo, to support adding items.
+- Replace React Bootstrap table with Ag-Grid to support more flexible table editing, such as in-cell editing and multi-select for deletion.
+- Insert a calendar in `Calorie today` section once backend and database are built. Clicking on different dates can query nutrition logs per day from database.
 - Build more validations and enhance UI for `Add Item Form`. Currently the form requires food name and calories and validates numeric values.  
 
  
