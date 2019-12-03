@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import styles from './Modal.module.css'
 
 class ModalTemplate extends Component {
 
@@ -20,9 +22,9 @@ class ModalTemplate extends Component {
 	};
 
 	render(){
-		const {title, children, show} = this.props;
+		const {title, children, show, onHide} = this.props;
 		return(
-				<Modal show={show} centered backdrop>
+				<Modal show={show} onHide={onHide} centered backdrop>
 					<Modal.Header closeButton>
 						<Modal.Title>{title}</Modal.Title>
 					</Modal.Header>

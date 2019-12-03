@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron'
+import filter from 'lodash/filter'
 import Card from './Card/Card'
 import CardSection from './Card/CardSection/CardSection'
 import Summary from './Summary/Summary'
 import IntakeBreakdown from "./IntakeBreakdown/IntakeBreakdown";
 import Log from './Log/Log'
-import ModalTemplate from './Modal/Modal'
+import DeletionConfirmationModal from './Modal/DeletionConfirmationModal'
 
 class Fitness extends Component {
  constructor(props){
@@ -40,15 +41,19 @@ class Fitness extends Component {
 
   openDeleteConfirmation=(type,itemId) =>{
     let removingItemName = this.state[type.toLowerCase()][itemId]['name'] || '';
-    this.setState({showDeletionModal: true, removingType:type, removingItemId: itemId, removingItemName:removingItemName})
+    this.setState({showDeletionModal: true, removingType:type.toLowerCase(), removingItemId: itemId, removingItemName:removingItemName})
   };
 
   onDeletionConfirmation=() =>{
-
+      const {removingType, removingItemId} = this.state;
+      let data = this.state[removingType]
+      let updated = filter(data, (o) => o.id !== removingItemId )
+      this.setState({[removingType]: updated})
+      this.onClose();
   };
 
-  onHide=()=>{
-    this.setState({showDeletionModal: false, removingItem:'', removingType:''})
+  onClose=()=>{
+    this.setState({showDeletionModal: false, removingItemId:'', removingType:'', removingItemName:''})
   };
 
 
@@ -63,11 +68,13 @@ class Fitness extends Component {
           </CardSection>
           <Log handlers={this.handlers} breakfast={breakfast} lunch={lunch} dinner={dinner} snack={snack}/>
         </Card>
-        <ModalTemplate show={showDeletionModal} onConfirm={this.onDeletionConfirmation} confirmText={'Delete'} onHide={this.onHide}>
-          {'Are you sure you want to delete '}
-          <strong>{removingItemName}</strong>
-          {` from ${removingType} ? `}
-        </ModalTemplate>
+        <DeletionConfirmationModal
+          removingType={removingType}
+          removingItemName={removingItemName}
+          showDeletionModal={showDeletionModal}
+          onConfirm={this.onDeletionConfirmation}
+          onHide={this.onClose}
+        />
       </Jumbotron>
     )
   }
