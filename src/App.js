@@ -65,8 +65,18 @@ class Fitness extends Component {
       const {removingType, removingItemId} = this.state;
       let data = this.state[removingType];
       let updated = filter(data, (o) => o.id !== removingItemId );
-      let curTotal = this.handleNutritionRemove().calories;
-      this.setState({[removingType]: updated, eaten: curTotal})
+      let {calories, carbs, proteins, fats, sodium, sugar} = this.handleNutritionRemove();
+      this.setState(
+        {
+                [removingType]: updated,
+                eaten: calories,
+                carbohydrates:carbs,
+                proteins,
+                fats,
+                sodium,
+                sugar,
+                }
+      )
       this.onDeletionModalClose();
   };
 
