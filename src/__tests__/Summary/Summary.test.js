@@ -1,7 +1,7 @@
 import React from 'react';
 import Summary from "../../Summary/Summary";
 import SummaryTable from "../../Summary/SummaryTable";
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 describe('<Summary />', () => {
 	it('renders  <SummaryTable /> and <SummaryProgress /> components', () => {
