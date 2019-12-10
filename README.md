@@ -19,6 +19,10 @@ open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Notes
 This is a purely frontend project (no backend and database)
+Testing enviroment set up for [Jest && Enzyme](https://medium.com/@rossbulat/testing-in-react-with-jest-and-enzyme-an-introduction-99ce047dfcf8)
+    touch ./src/__tests__
+    run npm test at root
+    
 
 ## Future directions
 - Reuse LogTable component to build Excise logs and dynamically update `Burned extra with exercise` in `Calorie today` section.
