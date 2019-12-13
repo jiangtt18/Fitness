@@ -111,8 +111,7 @@ class Fitness extends Component {
       this.setState({errorMessage: 'Name and Calories fields are required'});
       return;
     }
-    debugger;
-
+    console.log('here is the ref form', this.onAddItemForm.current);
     let data = this.state[AddingType];
     let ids =  Object.keys(data).map((s) =>(parseInt(s)));
     let tempId = ids.length === 0 ? 0 : Math.max(...ids) + 1;
