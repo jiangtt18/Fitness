@@ -46,6 +46,8 @@ class Fitness extends Component {
      openAddItem: this.openAddItem,
      openDeleteConfirmation: this.openDeleteConfirmation,
    }
+
+   this.onAddItemForm = React.createRef();
  }
 
   openAddItem = (e, type) => {
@@ -109,6 +111,7 @@ class Fitness extends Component {
       this.setState({errorMessage: 'Name and Calories fields are required'});
       return;
     }
+    debugger;
 
     let data = this.state[AddingType];
     let ids =  Object.keys(data).map((s) =>(parseInt(s)));
@@ -230,6 +233,7 @@ class Fitness extends Component {
           onHide={this.onAddItemModalClose}
           onChange={this.onChange}
           errorMessage={errorMessage}
+          formRef = {this.onAddItemForm}
         />
       </Jumbotron>
     )
