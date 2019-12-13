@@ -27,7 +27,7 @@ const AddItemModal = (
 
 const renderForm = (onChange, validated) => {
 	return(
-		<Form>
+		<Form ref={(form) => {this.addItemform = form}}>
 			<Form.Label>Name</Form.Label>
 			<Form.Control required type="text" name='addItemName' onChange = {(e) => {onChange(e)}} placeholder="Enter food"/>
 
