@@ -1,12 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Fitness from '../App'
-import MyInventory from '../screens/MyInventory/MyInventory';
-import StreamsFormWrapper from '../screens/StreamsForm/StreamsFormWrapper';
-import ErrorBoundary from '../components/Error/ErrorBoundary';
 
 const FitnessRoutes = props => {
-
 	return (
 			<Router>
 				<div>
