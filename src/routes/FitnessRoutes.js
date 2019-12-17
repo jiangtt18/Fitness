@@ -4,17 +4,17 @@ import Fitness from '../App'
 
 const FitnessRoutes = props => {
 	return (
-				<div>
-					<Switch>
-						<Redirect exact from='/' to='/fitness/dashboard'/>
-						<Route
-							path='/fitness/dashboard'
-							component={({ history, match }) => {
-								return <Fitness history={history} match={match}/>;
-							}}
-						/>
-					</Switch>
-				</div>
+		<div>
+			<Switch>
+				<Redirect exact from='/' to='/fitness/dashboard'/>
+				<Route
+					path='/fitness/dashboard'
+					component={({ history, match }) => {
+						return <Fitness history={history} match={match}/>;
+					}}
+				/>
+			</Switch>
+		</div>
 	);
 };
 
