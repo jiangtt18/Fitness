@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }from "react";
 import ModalTemplate from "./Modal";
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -27,8 +27,10 @@ const AddItemModal = (
 };
 
 const renderForm = (onChange, formRef) => {
+	const [validated, setValidated] = useState(false);
+
 	return(
-		<Form ref={formRef}>
+		<Form ref={formRef} noValidate validated={validated}>
 			<Form.Label>Name</Form.Label>
 			<Form.Control required type="text" name='addItemName' onChange = {(e) => {onChange(e)}} placeholder="Enter food"/>
 

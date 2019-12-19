@@ -45,7 +45,7 @@ class Fitness extends Component {
    this.handlers = {
      openAddItem: this.openAddItem,
      openDeleteConfirmation: this.openDeleteConfirmation,
-   }
+   };
 
    this.onAddItemForm = React.createRef();
  }
