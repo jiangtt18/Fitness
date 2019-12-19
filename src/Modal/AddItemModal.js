@@ -29,7 +29,6 @@ const AddItemModal = (
 };
 
 const renderForm = (onChange, formRef, validated) => {
-  console.log(validated);
 	return(
 		<Form ref={formRef} noValidate validated={validated}>
 			<Form.Label>Name</Form.Label>

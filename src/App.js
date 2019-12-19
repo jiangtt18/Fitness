@@ -97,7 +97,7 @@ class Fitness extends Component {
     this.setState({showDeletionModal: false, removingItemId:'', removingType:'', removingItemName:''})
   };
 
-  onAddItem = () => {
+  onAddItem = (e) => {
     const {
       addItemName,
       AddingType,
@@ -115,11 +115,6 @@ class Fitness extends Component {
 
     // debugger
     console.log('here is the ref form', this.onAddItemForm.current);
-    if (this.onAddItemForm.current.checkValidity() === false){
-      return
-    }
-
-
     let data = this.state[AddingType];
     let ids =  Object.keys(data).map((s) =>(parseInt(s)));
     let tempId = ids.length === 0 ? 0 : Math.max(...ids) + 1;
@@ -139,7 +134,7 @@ class Fitness extends Component {
          sugar,
       }
     );
-    this.onAddItemModalClose();
+    if(this.onAddItemForm.current.checkValidity() === true){this.onAddItemModalClose()};
   };
 
   hasError = () => {
@@ -159,7 +154,8 @@ class Fitness extends Component {
         AddFat: 0,
         AddSodium: 0,
         AddSugar: 0,
-        errorMessage:''
+        errorMessage:'',
+        validated:false,
       }
     )
   };
