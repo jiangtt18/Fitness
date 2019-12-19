@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d986f7f3-2874-46ff-97c5-d50a9ef0472a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/__tests__/IntakeBreakdown/IntakeBreakdown.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/__tests__/IntakeBreakdown/IntakeTable.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Modal/AddItemModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Modal/AddItemModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/__tests__/Summary/Summary.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/__tests__/Summary/Summary.test.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,7 +22,12 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
-  <component name="ProjectId" id="1UuyiZWub3IRg8GDfzXHSBDuLSy" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="770" />
+    <option name="y" value="31" />
+    <option name="width" value="1680" />
+    <option name="height" value="938" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -39,6 +45,12 @@
     <property name="prettierjs.PrettierConfiguration.NodeInterpreter" value="project" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/__tests__" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -67,25 +79,11 @@
       <workItem from="1575180994533" duration="1990000" />
       <workItem from="1575198785920" duration="59977000" />
       <workItem from="1575365716259" duration="4304000" />
-      <workItem from="1576220908224" duration="1744000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
