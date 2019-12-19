@@ -1,4 +1,4 @@
-import React, { useState }from "react";
+import React from "react";
 import ModalTemplate from "./Modal";
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -23,7 +23,7 @@ const AddItemModal = (
 				confirmText={'Save'}
 				onHide={onHide}>
 				<p className={styles.error}>{errorMessage&&errorMessage}</p>
-				{renderForm(onChange,formRef,validated)}
+				{renderForm(onChange, formRef, validated)}
 			</ModalTemplate>
 		)
 };

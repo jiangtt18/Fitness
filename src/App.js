@@ -108,13 +108,7 @@ class Fitness extends Component {
       AddSodium,
       AddSugar,
     } = this.state;
-    // if (this.hasError()){
-    //   this.setState({errorMessage: 'Name and Calories fields are required'});
-    //   return;
-    // }
 
-    // debugger
-    console.log('here is the ref form', this.onAddItemForm.current);
     if(this.onAddItemForm.current.checkValidity() === false){
       this.setState({validated:true});
       return;
@@ -139,11 +133,6 @@ class Fitness extends Component {
       }
     );
     this.onAddItemModalClose();
-  };
-
-  hasError = () => {
-    const {addItemName, AddCalorie} = this.state;
-    return addItemName.trim() === '' || AddCalorie === 0;
   };
 
   onAddItemModalClose = () => {
@@ -242,7 +231,7 @@ class Fitness extends Component {
           onHide={this.onAddItemModalClose}
           onChange={this.onChange}
           errorMessage={errorMessage}
-          formRef= {this.onAddItemForm}
+          formRef={this.onAddItemForm}
           validated={validated}
         />
       </Jumbotron>
