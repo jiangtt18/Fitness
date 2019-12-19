@@ -115,6 +115,10 @@ class Fitness extends Component {
 
     // debugger
     console.log('here is the ref form', this.onAddItemForm.current);
+    if(this.onAddItemForm.current.checkValidity() === false){
+      this.setState({validated:true});
+      return;
+    }
     let data = this.state[AddingType];
     let ids =  Object.keys(data).map((s) =>(parseInt(s)));
     let tempId = ids.length === 0 ? 0 : Math.max(...ids) + 1;
@@ -134,7 +138,7 @@ class Fitness extends Component {
          sugar,
       }
     );
-    if(this.onAddItemForm.current.checkValidity() === true){this.onAddItemModalClose()};
+    this.onAddItemModalClose();
   };
 
   hasError = () => {
