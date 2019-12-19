@@ -39,13 +39,16 @@ class Fitness extends Component {
      lunch: {},
      dinner: {},
      snack: {},
-     errorMessage: ''
+     errorMessage: '',
+     validated:false,
    };
 
    this.handlers = {
      openAddItem: this.openAddItem,
      openDeleteConfirmation: this.openDeleteConfirmation,
-   }
+   };
+
+   this.onAddItemForm = React.createRef();
  }
 
   openAddItem = (e, type) => {
@@ -94,7 +97,7 @@ class Fitness extends Component {
     this.setState({showDeletionModal: false, removingItemId:'', removingType:'', removingItemName:''})
   };
 
-  onAddItem = () => {
+  onAddItem = (e) => {
     const {
       addItemName,
       AddingType,
@@ -103,13 +106,13 @@ class Fitness extends Component {
       AddProtein,
       AddFat,
       AddSodium,
-      AddSugar
+      AddSugar,
     } = this.state;
-    if (this.hasError()){
-      this.setState({errorMessage: 'Name and Calories fields are required'});
+
+    if(this.onAddItemForm.current.checkValidity() === false){
+      this.setState({validated:true});
       return;
     }
-
     let data = this.state[AddingType];
     let ids =  Object.keys(data).map((s) =>(parseInt(s)));
     let tempId = ids.length === 0 ? 0 : Math.max(...ids) + 1;
@@ -122,6 +125,7 @@ class Fitness extends Component {
         [AddingType]: updated,
          eaten: calories,
          carbohydrates: carbs,
+         validated:true,
          proteins,
          fats,
          sodium,
@@ -129,11 +133,6 @@ class Fitness extends Component {
       }
     );
     this.onAddItemModalClose();
-  };
-
-  hasError = () => {
-    const {addItemName, AddCalorie} = this.state;
-    return addItemName.trim() === '' || AddCalorie === 0;
   };
 
   onAddItemModalClose = () => {
@@ -148,7 +147,8 @@ class Fitness extends Component {
         AddFat: 0,
         AddSodium: 0,
         AddSugar: 0,
-        errorMessage:''
+        errorMessage:'',
+        validated:false,
       }
     )
   };
@@ -200,6 +200,7 @@ class Fitness extends Component {
      sodium,
      sugar,
      errorMessage,
+     validated
    } = this.state;
 
     return(
@@ -230,6 +231,8 @@ class Fitness extends Component {
           onHide={this.onAddItemModalClose}
           onChange={this.onChange}
           errorMessage={errorMessage}
+          formRef={this.onAddItemForm}
+          validated={validated}
         />
       </Jumbotron>
     )

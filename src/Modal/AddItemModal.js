@@ -11,8 +11,11 @@ const AddItemModal = (
 		onConfirm,
 		onHide,
 		onChange,
-		errorMessage
+		errorMessage,
+		formRef,
+		validated,
 	}) => {
+
 		return (
 			<ModalTemplate
 				show={show}
@@ -20,14 +23,14 @@ const AddItemModal = (
 				confirmText={'Save'}
 				onHide={onHide}>
 				<p className={styles.error}>{errorMessage&&errorMessage}</p>
-				{renderForm(onChange)}
+				{renderForm(onChange, formRef, validated)}
 			</ModalTemplate>
 		)
 };
 
-const renderForm = (onChange, validated) => {
+const renderForm = (onChange, formRef, validated) => {
 	return(
-		<Form>
+		<Form ref={formRef} noValidate validated={validated}>
 			<Form.Label>Name</Form.Label>
 			<Form.Control required type="text" name='addItemName' onChange = {(e) => {onChange(e)}} placeholder="Enter food"/>
 
