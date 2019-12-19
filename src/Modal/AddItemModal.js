@@ -13,7 +13,9 @@ const AddItemModal = (
 		onChange,
 		errorMessage,
 		formRef,
+		validated,
 	}) => {
+
 		return (
 			<ModalTemplate
 				show={show}
@@ -21,14 +23,13 @@ const AddItemModal = (
 				confirmText={'Save'}
 				onHide={onHide}>
 				<p className={styles.error}>{errorMessage&&errorMessage}</p>
-				{renderForm(onChange,formRef)}
+				{renderForm(onChange,formRef,validated)}
 			</ModalTemplate>
 		)
 };
 
-const renderForm = (onChange, formRef) => {
-	const [validated, setValidated] = useState(false);
-
+const renderForm = (onChange, formRef, validated) => {
+  console.log(validated);
 	return(
 		<Form ref={formRef} noValidate validated={validated}>
 			<Form.Label>Name</Form.Label>

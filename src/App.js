@@ -39,7 +39,8 @@ class Fitness extends Component {
      lunch: {},
      dinner: {},
      snack: {},
-     errorMessage: ''
+     errorMessage: '',
+     validated:false,
    };
 
    this.handlers = {
@@ -105,13 +106,20 @@ class Fitness extends Component {
       AddProtein,
       AddFat,
       AddSodium,
-      AddSugar
+      AddSugar,
     } = this.state;
-    if (this.hasError()){
-      this.setState({errorMessage: 'Name and Calories fields are required'});
-      return;
-    }
+    // if (this.hasError()){
+    //   this.setState({errorMessage: 'Name and Calories fields are required'});
+    //   return;
+    // }
+
+    // debugger
     console.log('here is the ref form', this.onAddItemForm.current);
+    if (this.onAddItemForm.current.checkValidity() === false){
+      return
+    }
+
+
     let data = this.state[AddingType];
     let ids =  Object.keys(data).map((s) =>(parseInt(s)));
     let tempId = ids.length === 0 ? 0 : Math.max(...ids) + 1;
@@ -124,6 +132,7 @@ class Fitness extends Component {
         [AddingType]: updated,
          eaten: calories,
          carbohydrates: carbs,
+         validated:true,
          proteins,
          fats,
          sodium,
@@ -202,6 +211,7 @@ class Fitness extends Component {
      sodium,
      sugar,
      errorMessage,
+     validated
    } = this.state;
 
     return(
@@ -232,7 +242,8 @@ class Fitness extends Component {
           onHide={this.onAddItemModalClose}
           onChange={this.onChange}
           errorMessage={errorMessage}
-          formRef = {this.onAddItemForm}
+          formRef= {this.onAddItemForm}
+          validated={validated}
         />
       </Jumbotron>
     )
